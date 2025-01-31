@@ -5,10 +5,10 @@ const mongoose= require("mongoose")
 const cors = require("cors")
 const { config } = require('dotenv');
 const app = express()
-const adminRoutes = require("./router/adminRouter");
-const userRoutes = require("./router/userRoute")
-const complaintRoutes = require("./routes/complaintRoutes");
-app.use("/api", complaintRoutes);
+
+const adminRoutes = require("./routes/adminRouter");
+const userRoutes = require("./routes/userRoute")
+const complaintRoutes = require("./routes/complaintRouter");
 // Load environment variables
 config();
 
@@ -17,8 +17,9 @@ connectDB();
 app.use(express.json())
 
 app.use(cors())
-app.use(adminRouter)
-app.use(complaintRouter)
+app.use(adminRoutes)
+app.use(userRoutes)
+app.use(complaintRoutes)
 
   mongoose.connect("mongodb://localhost:27017/OnlineComplaint").then(()=>{
     console.log("the database is connected successfuly")
