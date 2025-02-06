@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const AdminModel = require("../model/AdminSchema");
+const AdminModel = require("../models/AdminSchema");
 require("dotenv").config();
 
 const SECRET_KEY = process.env.JWT_SECRET || "1234";

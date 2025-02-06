@@ -1,4 +1,4 @@
-const Complaint = require("../model/complaintSchema");
+const Complaint = require("../models/complaintSchema");
 
 // Create a new complaint
 exports.createComplaint = async (req, res) => {
