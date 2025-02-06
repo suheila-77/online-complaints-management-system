@@ -1,52 +1,61 @@
-const complaintModel = require("../model/complaintSchema");
+const Complaint = require("../model/complaintSchema");
 
-// Create Complaint
-const createComplaint = async (req, res) => {
+// Create a new complaint
+exports.createComplaint = async (req, res) => {
     try {
-        const complaint = new complaintModel(req.body);
-        await complaint.save();
-        res.status(201).json({ message: "Complaint has been registered successfully" });
+        const { Title, Description, email } = req.body;
+
+        // Create a new complaint
+        const newComplaint = new Complaint({
+            Title,
+            Description,
+            email
+        });
+
+        // Save to database
+        await newComplaint.save();
+        res.status(201).json({ message: "Complaint created successfully", complaint: newComplaint });
     } catch (error) {
-        res.status(500).json({ error: "Error registering complaint" });
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
-// Get All Complaints
-const getAllComplaints = async (req, res) => {
+// Get all complaints
+exports.getAllComplaints = async (req, res) => {
     try {
-        const complaints = await complaintModel.find();
-        res.json(complaints);
+        const complaints = await Complaint.find();
+        res.status(200).json(complaints);
     } catch (error) {
-        res.status(500).json({ error: "Error fetching complaints" });
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
-// Update Complaint
-const updateComplaint = async (req, res) => {
+// Get a single complaint by ID
+exports.getComplaintById = async (req, res) => {
     try {
-        const updated = await complaintModel.updateOne(
-            { _id: req.params.id },
-            { $set: req.body }
-        );
-        res.json({ message: "Complaint has been updated successfully" });
+        const complaint = await Complaint.findById(req.params.id);
+        if (!complaint) {
+            return res.status(404).json({ message: "Complaint not found" });
+        }
+        res.status(200).json(complaint);
     } catch (error) {
-        res.status(500).json({ error: "Error updating complaint" });
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
 };
 
-// Delete Complaint
-const deleteComplaint = async (req, res) => {
+// Delete a complaint by ID
+exports.deleteComplaint = async (req, res) => {
     try {
-        await complaintModel.deleteOne({ _id: req.params.id });
-        res.json({ message: "Complaint has been deleted successfully" });
+        const complaint = await Complaint.findByIdAndDelete(req.params.id);
+        if (!complaint) {
+            return res.status(404).json({ message: "Complaint not found" });
+        }
+        res.status(200).json({ message: "Complaint deleted successfully" });
     } catch (error) {
-        res.status(500).json({ error: "Error deleting complaint" });
+        console.error(error);
+        res.status(500).json({ message: "Server error" });
     }
-};
-
-module.exports = {
-    createComplaint,
-    getAllComplaints,
-    updateComplaint,
-    deleteComplaint
 };

@@ -13,7 +13,8 @@ const complaintSchema = mongoose.Schema({
     Description: {
         type: String,
         required: true,
-    }
+    },
+    email: { type: String, required: true }, 
 
 })
 
