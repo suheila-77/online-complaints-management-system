@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const UserModel = require("../model/userSchema"); // Import User model
+const UserModel = require("../models/userSchema"); // Import User model
 require("dotenv").config();
 
 const SECRET_KEY = process.env.JWT_SECRET || "your_secret_key";

@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerAdmin, loginAdmin, adminProtectedRoute } = require("../controller/adminController");
+const { registerAdmin, loginAdmin, adminProtectedRoute } = require("../controllers/adminController");
 const verifyAdmin = require("../middlewares/adminAuth"); // Import middleware
 
 const router = express.Router();
