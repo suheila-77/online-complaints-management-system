@@ -23,14 +23,6 @@ adminka kaliya aya awood uleh inu arko dhaman cabashoyinka laso gudbiyay
 halkan wxu ka arki kara emailka qofka si uu ugu jawb celiyo ciwanka cabashada io sido kle faahfahinta
 
 
-projectigan wxn ku samenay 4 qof
-CA213
-Group H
-
-Suheyla abdulahi maxamuud c1210743
-Fardawsa Ali Abdulle c1210740
-Muniiro osman farah c1210703
-Cabdiraxman Barre jimcaale C1210213
 
 
 
